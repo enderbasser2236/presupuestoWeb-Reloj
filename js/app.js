@@ -2,6 +2,14 @@ const ingresos = [];
 
 const egresos = [];
 
+document.getElementById('forma').onsubmit = function (evt) {
+  stopDefAction(evt);
+};
+
+function stopDefAction(evt) {
+  evt.preventDefault();
+}
+
 let cargarApp = () => {
   cargarCabecero();
   cargarIngresos();
@@ -68,6 +76,7 @@ const cargarEgresos = () => {
 };
 
 const crearIngresoHTML = (ingreso) => {
+  /* console.log(ingreso); */
   let ingresoHTML = `
     <div class="elemento limpiarEstilos">
         <div class="elemento_descripcion">${ingreso.descripcion}</div>
@@ -122,20 +131,24 @@ const eliminarEgreso = (id) => {
   cargarEgresos();
 };
 
-let agregarDato = () => {
+let agregarDatoIngreso = () => {
   let forma = document.forms['forma'];
-  let tipo = forma['tipo'];
-  let descripcion = forma['descripcion'];
-  let valor = forma['valor'];
+  let descripcion = forma['descripcionIngreso'];
+  let valor = forma['valorIngreso'];
   if (descripcion.value !== '' && valor.value !== '') {
-    if (tipo.value === 'ingreso') {
-      ingresos.push(new Ingreso(descripcion.value, +valor.value));
-      cargarCabecero();
-      cargarIngresos();
-    } else if (tipo.value === 'egreso') {
-      egresos.push(new Egreso(descripcion.value, +valor.value));
-      cargarCabecero();
-      cargarEgresos();
-    }
+    ingresos.push(new Ingreso(descripcion.value, +valor.value));
+    cargarCabecero();
+    cargarIngresos();
+  }
+};
+
+let agregarDatoEgreso = () => {
+  let forma = document.forms['forma'];
+  let descripcion = forma['descripcionEgreso'];
+  let valor = forma['valorEgreso'];
+  if (descripcion.value !== '' && valor.value !== '') {
+    egresos.push(new Egreso(descripcion.value, +valor.value));
+    cargarCabecero();
+    cargarEgresos();
   }
 };
