@@ -25,7 +25,7 @@
             <div class="presupuesto_valor" id="presupuesto"></div>
             <div class="presupuesto_ingreso limpiarEstilos">
                 <div class="presupuesto_ingreso--texto">Ingresos</div>
-                <div class="derecha">
+                <div class="derecha limpiarEstilos">
                     <div class="presupuesto_ingreso--valor" id="ingresos"></div>
                     <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
                 </div>
@@ -40,11 +40,11 @@
         </div>
     </div>
 
-    <form id="forma">
-        <div class="agregar">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 ">
+    <div class="agregar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <form id="formaIngreso">
                         <div class="agregar_contenedor">
                             <div class="tipoIngreso">
                                 <h2>Ingreso.</h2>
@@ -57,8 +57,10 @@
                                 <ion-icon name="checkmark-circle-outline"></ion-icon>
                             </button>
                         </div>
-                    </div>
-                    <div class="col-md-6">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form id="formaEgreso">
                         <div class="agregar_contenedor">
                             <div class="tipoEgreso">
                                 <h2>Egreso.</h2>
@@ -71,12 +73,12 @@
                                 <ion-icon name="checkmark-circle-outline"></ion-icon>
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-    </form>
 
     <div class="container-fluid">
         <div class="row">

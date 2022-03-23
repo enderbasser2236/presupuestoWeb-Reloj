@@ -2,7 +2,11 @@ const ingresos = [];
 
 const egresos = [];
 
-document.getElementById('forma').onsubmit = function (evt) {
+document.getElementById('formaIngreso').onsubmit = function (evt) {
+  stopDefAction(evt);
+};
+
+document.getElementById('formaEgreso').onsubmit = function (evt) {
   stopDefAction(evt);
 };
 
@@ -53,10 +57,14 @@ const formatoMoneda = (valor) => {
 };
 
 const formatoPorcentaje = (valor) => {
-  return valor.toLocaleString('en-US', {
-    style: 'percent',
-    minimunFractionDigits: 2,
-  });
+  if (valor > 0) {
+    return valor.toLocaleString('en-US', {
+      style: 'percent',
+      minimunFractionDigits: 2,
+    });
+  } else {
+    return '0%';
+  }
 };
 
 const cargarIngresos = () => {
@@ -76,21 +84,21 @@ const cargarEgresos = () => {
 };
 
 const crearIngresoHTML = (ingreso) => {
-  /* console.log(ingreso); */
   let ingresoHTML = `
-    <div class="elemento limpiarEstilos">
-        <div class="elemento_descripcion">${ingreso.descripcion}</div>
-        <div class="derecha limpiar estilos">
-            <div class="elemento_valor">+ ${formatoMoneda(ingreso.valor)}</div>
-            <div class="elemento_eliminar"></div>
-            <button class="elemento_eliminar--btn">
-                <ion-icon name="close-circle-outline"
-                onclick="eliminarIngreso(${ingreso.id})"></ion-icon>
-            </button>
-        </div>
-    </div>
-    `;
+  <div class="elemento limpiarEstilos">
+  <div class="elemento_descripcion">${ingreso.descripcion}</div>
+  <div class="derecha limpiar estilos">
+  <div class="elemento_valor">+ ${formatoMoneda(ingreso.valor)}</div>
+  <div class="elemento_eliminar"></div>
+  <button class="elemento_eliminar--btn">
+  <ion-icon name="close-circle-outline"
+  onclick="eliminarIngreso(${ingreso.id})"></ion-icon>
+  </button>
+  </div>
+  </div>
+  `;
 
+  formatoPorcentaje();
   return ingresoHTML;
 };
 
@@ -132,7 +140,7 @@ const eliminarEgreso = (id) => {
 };
 
 let agregarDatoIngreso = () => {
-  let forma = document.forms['forma'];
+  let forma = document.forms['formaIngreso'];
   let descripcion = forma['descripcionIngreso'];
   let valor = forma['valorIngreso'];
   if (descripcion.value !== '' && valor.value !== '') {
@@ -143,7 +151,7 @@ let agregarDatoIngreso = () => {
 };
 
 let agregarDatoEgreso = () => {
-  let forma = document.forms['forma'];
+  let forma = document.forms['formaEgreso'];
   let descripcion = forma['descripcionEgreso'];
   let valor = forma['valorEgreso'];
   if (descripcion.value !== '' && valor.value !== '') {
