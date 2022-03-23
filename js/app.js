@@ -148,6 +148,8 @@ let agregarDatoIngreso = () => {
     cargarCabecero();
     cargarIngresos();
   }
+  document.getElementById('descripcionIngreso').value = '';
+  document.getElementById('valorIngreso').value = '';
 };
 
 let agregarDatoEgreso = () => {
@@ -159,4 +161,6 @@ let agregarDatoEgreso = () => {
     cargarCabecero();
     cargarEgresos();
   }
+  document.getElementById('descripcionEgreso').value = '';
+  document.getElementById('valorEgreso').value = '';
 };
